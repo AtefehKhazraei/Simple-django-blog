@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="col-sm-6 col-sm-offset-6"/>
+    <img src="{{ instance.image.url }}" class="img-responsive"></img>
+    <b>{{ instance.title }}</b> <br> {{ instance.publish }} <small>{% if instance.draft %} <span style="color: red">Draft</span>
+    {% endif %} </small> <br><br>
+    {{ instance.content|linebreaks }} <br>
+    {% if instance.user.get_full_name %}
+    <p> Author : {{ instance.user.get_full_name }}</p>
+    {% endif %}
+<div class="fb-comments" data-href="{{ request.built_absolute_url }}" data-numposts="5" data-width=""></div>
+
+</div>
+{% endblock content %}
+</body>
+</html>
